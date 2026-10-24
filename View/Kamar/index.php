@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../../Conection/koneksi.php';
-require_once __DIR__ . '/../../Conection/get_kamar.php';
 
 $sql_read = "SELECT * FROM m_kamar";
 $result = mysqli_query($conn, $sql_read);

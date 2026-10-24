@@ -15,7 +15,7 @@ require_once __DIR__ . '/../../Conection/get_kamar.php';
 
     <h2>Edit Kamar</h2>
 
-    <form action="../../Connection/post_kamar.php" method="POST">
+    <form action="../../Conection/post_kamar.php" method="POST">
         <input type="hidden" name="id" value="<?= $row['id']; ?>">
         <label>Nomor Kamar</label><br>
         <input
