@@ -16,6 +16,8 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Management Kamar</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -40,7 +42,7 @@ if (!$result) {
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover align-middle mb-0">
 
-                        <thead class="table-dark opacity-50">
+                        <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
                                 <th>Nomor Kamar</th>
@@ -115,7 +117,7 @@ if (!$result) {
             cancelButtonText: 'Batal'
         }).then(r => { if (r.isConfirmed) location.href = url; });
     }
-</script>
+    </script>
 </body>
 
 </html>
