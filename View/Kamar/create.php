@@ -1,4 +1,3 @@
-```php
 <?php
 require_once __DIR__ . '/../../Conection/koneksi.php';
 
@@ -187,4 +186,3 @@ if (isset($_POST['simpan'])) {
 </body>
 
 </html>
-```
