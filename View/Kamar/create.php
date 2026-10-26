@@ -1,3 +1,4 @@
+```php
 <?php
 require_once __DIR__ . '/../../Conection/koneksi.php';
 
@@ -38,7 +39,7 @@ if (isset($_POST['simpan'])) {
             header("Location: index.php");
             exit;
         } else {
-            echo "Gagal menyimpan: " . mysqli_stmt_error($stmt);
+            $pesan_error = "Gagal menyimpan data kamar.";
         }
     }
 }
@@ -50,57 +51,140 @@ if (isset($_POST['simpan'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Tambah Kamar</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
 
-    <h2>Tambah Kamar</h2>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
 
-    <?php if ($pesan_error != "") { ?>
-        <p style="color: red;">
-            <?= htmlspecialchars($pesan_error); ?>
-        </p>
-    <?php } ?>
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h4 class="mb-0">Tambah Kamar</h4>
+                    </div>
 
-    <form method="POST">
-        <label>Nomor Kamar</label><br>
-        <input
-            type="text"
-            name="nomor_kamar"
-            value="<?= htmlspecialchars($_POST['nomor_kamar'] ?? ''); ?>"
-            required>
-        <br><br>
+                    <div class="card-body p-4">
 
-        <label>Harga</label><br>
-        <input
-            type="number"
-            name="harga"
-            min="0"
-            value="<?= htmlspecialchars($_POST['harga'] ?? ''); ?>"
-            required>
-        <br><br>
+                        <p class="text-muted mb-4">
+                            Silakan isi formulir berikut untuk menambahkan data kamar.
+                        </p>
 
-        <label>Status Kamar</label><br>
-        <select name="status" required>
-            <option value="">-- Pilih Status --</option>
-            <option value="0">Ready</option>
-            <option value="1">Not Ready</option>
-        </select>
-        <br><br>
+                        <?php if ($pesan_error != "") { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?= htmlspecialchars($pesan_error); ?>
+                            </div>
+                        <?php } ?>
 
-        <label>Status Aktif</label><br>
-        <select name="is_active" required>
-            <option value="">-- Pilih Status Aktif --</option>
-            <option value="0">Aktif</option>
-            <option value="1">Tidak Aktif</option>
-        </select>
-        <br><br>
+                        <form method="POST">
 
-        <button type="submit" name="simpan">Simpan</button>
-        <a href="index.php">Kembali</a>
-    </form>
+                            <div class="mb-3">
+                                <label for="nomor_kamar" class="form-label">
+                                    Nomor Kamar
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nomor_kamar"
+                                    name="nomor_kamar"
+                                    placeholder="Masukkan nomor kamar"
+                                    value="<?= htmlspecialchars($_POST['nomor_kamar'] ?? ''); ?>"
+                                    required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="harga" class="form-label">
+                                    Harga
+                                </label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="harga"
+                                    name="harga"
+                                    min="0"
+                                    placeholder="Masukkan harga kamar"
+                                    value="<?= htmlspecialchars($_POST['harga'] ?? ''); ?>"
+                                    required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="status" class="form-label">
+                                    Status Kamar
+                                </label>
+                                <select
+                                    class="form-select"
+                                    id="status"
+                                    name="status"
+                                    required>
+                                    <option value="">-- Pilih Status --</option>
+                                    <option value="0"
+                                        <?= (($_POST['status'] ?? '') === '0') ? 'selected' : ''; ?>>
+                                        Ready
+                                    </option>
+                                    <option value="1"
+                                        <?= (($_POST['status'] ?? '') === '1') ? 'selected' : ''; ?>>
+                                        Not Ready
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="is_active" class="form-label">
+                                    Status Aktif
+                                </label>
+                                <select
+                                    class="form-select"
+                                    id="is_active"
+                                    name="is_active"
+                                    required>
+                                    <option value="">-- Pilih Status Aktif --</option>
+                                    <option value="0"
+                                        <?= (($_POST['is_active'] ?? '') === '0') ? 'selected' : ''; ?>>
+                                        Aktif
+                                    </option>
+                                    <option value="1"
+                                        <?= (($_POST['is_active'] ?? '') === '1') ? 'selected' : ''; ?>>
+                                        Tidak Aktif
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="d-flex justify-content-between gap-2">
+                                <a href="index.php" class="btn btn-outline-secondary">
+                                    Kembali
+                                </a>
+
+                                <button
+                                    type="submit"
+                                    name="simpan"
+                                    class="btn btn-primary">
+                                    Simpan Kamar
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <p class="text-center text-muted mt-3 small">
+                    Sistem Manajemen Kamar
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
 </html>
+```
