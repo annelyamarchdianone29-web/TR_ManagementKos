@@ -24,7 +24,7 @@ require_once __DIR__ . '/../../Conection/get_kamar.php';
                     </div>
 
                     <div class="card-body">
-                        <form action="../../Connection/post_kamar.php" method="POST">
+                        <form action="../../Conection/post_kamar.php" method="POST">
                             <input type="hidden" name="id" value="<?= $row['id']; ?>">
 
                             <div class="mb-3">
