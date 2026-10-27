@@ -39,7 +39,7 @@ if (!$result) {
         <div class="card shadow-sm border-0">
 
             <div class="card-header bg-primary text-white py-3">
-                <h3 class="mb-0">Management Kamar</h3>
+                <h3 class="mb-0">Management Penghuni</h3>
             </div>
 
             <div class="card-body">
