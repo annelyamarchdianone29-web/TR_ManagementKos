@@ -5,4 +5,4 @@
         <a class="nav-link" href="/TR_ManagementKos/View/Penghuni/index.php">Penghuni</a>
         <a class="nav-link" href="/TR_ManagementKos/View/Pembayaran/index.php">Pembayaran</a>
     </div>
-</nav>
+</nav> 

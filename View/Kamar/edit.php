@@ -62,10 +62,17 @@ require_once __DIR__ . '/../../Conection/get_kamar.php';
                                 </select>
                             </div>
 
-                            <input
-                                type="hidden"
-                                name="is_active"
-                                value="<?= $row['is_active']; ?>">
+                            <div class="mb-3">
+                                <label class="form-label">Status Aktif</label>
+                                <select class="form-select" name="is_active" required>
+                                    <option value="0" <?= $row['is_active'] == 0 ? 'selected' : ''; ?>>
+                                        Aktif
+                                    </option>
+                                    <option value="1" <?= $row['is_active'] == 1 ? 'selected' : ''; ?>>
+                                        Tidak Aktif
+                                    </option>
+                                </select>
+                            </div>
 
                             <div class="d-flex gap-2">
                                 <button type="submit" name="simpan" class="btn btn-primary">
@@ -73,7 +80,7 @@ require_once __DIR__ . '/../../Conection/get_kamar.php';
                                 </button>
                                 <a href="index.php" class="btn btn-outline-secondary">Batal</a>
                             </div>
-                        </form> 
+                        </form>
                     </div>
                 </div>
 
