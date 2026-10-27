@@ -5,8 +5,8 @@ require_once __DIR__ . '/../../Conection/koneksi.php';
 $sql_read = "SELECT
                 p.id,
                 p.no_hp,
-                p.nama,
-                p.keterangan,
+                p.nama_lengkap,
+                p.email,
                 a.id AS id_assign,
                 a.id_kamar
              FROM m_penghuni p
