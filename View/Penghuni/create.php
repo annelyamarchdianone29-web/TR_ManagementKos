@@ -6,7 +6,7 @@ $pesan = '';
 if (isset($_POST['simpan'])) {
     $no_hp = trim($_POST['no_hp']);
     $nama = trim($_POST['nama']);
-    $keterangan = trim($_POST['email']);
+    $email = trim($_POST['email']);
 
     $sql_cek = "SELECT id FROM m_penghuni WHERE no_hp = ?";
     $stmt_cek = mysqli_prepare($conn, $sql_cek);
@@ -58,6 +58,7 @@ if (isset($_POST['simpan'])) {
 
             header("Location: index.php");
             exit;
+
         } catch (mysqli_sql_exception $e) {
             mysqli_rollback($conn);
             $pesan = "Gagal menyimpan data penghuni. Periksa kembali struktur tabel.";
@@ -72,45 +73,125 @@ if (isset($_POST['simpan'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Tambah Penghuni</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 </head>
 
-<body>
-    <h2>Tambah Penghuni</h2>
+<body class="bg-light">
 
-    <?php if ($pesan != '') { ?>
-        <p style="color: red;">
-            <?= htmlspecialchars($pesan); ?>
-        </p>
-    <?php } ?>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
 
-    <form action="" method="POST">
-        <label>Nomor HP</label><br>
-        <input
-            type="tel"
-            name="no_hp"
-            value="<?= htmlspecialchars($_POST['no_hp'] ?? ''); ?>"
-            required>
-        <br><br>
+                <div class="card shadow-sm border-0">
 
-        <label>Nama Lengkap</label><br>
-        <input
-            type="text"
-            name="nama"
-            value="<?= htmlspecialchars($_POST['nama'] ?? ''); ?>"
-            required>
-        <br><br>
+                    <!-- Header -->
+                    <div class="card-header bg-primary text-white py-3">
+                        <h4 class="mb-0">Tambah Penghuni</h4>
+                    </div>
 
-        <label>Keterangan</label><br>
-        <textarea
-            type="text"
-            name="email"
-            required><?= htmlspecialchars($_POST['keterangan'] ?? ''); ?></textarea>
-        <br><br>
+                    <!-- Form -->
+                    <div class="card-body p-4">
 
-        <button type="submit" name="simpan">Simpan</button>
-        <a href="index.php">Batal</a>
-    </form>
+                        <p class="text-muted mb-4">
+                            Silakan isi formulir berikut untuk menambahkan data penghuni.
+                        </p>
+
+                        <!-- Pesan Error -->
+                        <?php if ($pesan != '') { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?= htmlspecialchars($pesan); ?>
+                            </div>
+                        <?php } ?>
+
+                        <form action="" method="POST">
+
+                            <!-- Nomor HP -->
+                            <div class="mb-3">
+                                <label for="no_hp" class="form-label">
+                                    Nomor HP
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    id="no_hp"
+                                    name="no_hp"
+                                    placeholder="Masukkan nomor HP"
+                                    value="<?= htmlspecialchars($_POST['no_hp'] ?? ''); ?>"
+                                    required>
+                            </div>
+
+                            <!-- Nama Lengkap -->
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">
+                                    Nama Lengkap
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nama"
+                                    name="nama"
+                                    placeholder="Masukkan nama lengkap"
+                                    value="<?= htmlspecialchars($_POST['nama'] ?? ''); ?>"
+                                    required>
+                            </div>
+
+                            <!-- Keterangan -->
+                            <div class="mb-4">
+                                <label for="email" class="form-label">
+                                    Keterangan
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    id="email"
+                                    name="email"
+                                    rows="3"
+                                    placeholder="Masukkan keterangan"
+                                    required><?= htmlspecialchars($_POST['email'] ?? ''); ?></textarea>
+                            </div>
+
+                            <!-- Tombol -->
+                            <div class="d-flex justify-content-between gap-2">
+
+                                <a
+                                    href="index.php"
+                                    class="btn btn-outline-secondary">
+                                    Batal
+                                </a>
+
+                                <button
+                                    type="submit"
+                                    name="simpan"
+                                    class="btn btn-primary">
+                                    Simpan Penghuni
+                                </button>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <p class="text-center text-muted mt-3 small">
+                    Sistem Manajemen Penghuni
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
