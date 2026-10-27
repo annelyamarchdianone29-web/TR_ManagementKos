@@ -17,7 +17,7 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Management Kamar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -107,19 +107,17 @@ if (!$result) {
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function konfirmasiHapus(e, url, nomor) {
-            e.preventDefault();
-            Swal.fire({
-                title: 'Nonaktifkan kamar?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#dc3545',
-                confirmButtonText: 'Ya, nonaktifkan',
-                cancelButtonText: 'Batal'
-            }).then(r => {
-                if (r.isConfirmed) location.href = url;
-            });
-        }
+    function konfirmasiHapus(e, url, nomor) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Nonaktifkan kamar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: 'Ya, nonaktifkan',
+            cancelButtonText: 'Batal'
+        }).then(r => { if (r.isConfirmed) location.href = url; });
+    }
     </script>
 </body>
 
