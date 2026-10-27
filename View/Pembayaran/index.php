@@ -1,4 +1,3 @@
-<?php include __DIR__ . '/../menu.php'; ?>
 <?php
 require_once __DIR__ . '/../../Conection/koneksi.php';
 
@@ -7,7 +6,7 @@ $sql = "SELECT
             b.kode_transaksi,
             b.status,
             b.nominal_pembayaran,
-            h.nama,
+            h.nama_lengkap,
             k.nomor_kamar,
             k.harga
         FROM t_pembayaran b
@@ -29,6 +28,7 @@ $result = mysqli_query($conn, $sql);
 </head>
 
 <body>
+    <?php include __DIR__ . '/../menu.php'; ?>
     <h2>Daftar Pembayaran</h2>
 
     <table border="1" cellpadding="8">

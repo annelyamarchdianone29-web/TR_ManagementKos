@@ -1,12 +1,11 @@
-<?php include __DIR__ . '/../menu.php'; ?>
 <?php
 require_once __DIR__ . '/../../Conection/koneksi.php';
 
 $sql_read = "SELECT
                 p.id,
                 p.no_hp,
-                p.nama,
-                p.keterangan,
+                p.nama_lengkap,
+                p.email,
                 a.id AS id_assign,
                 a.id_kamar
              FROM m_penghuni p
@@ -31,6 +30,7 @@ if (!$result) {
 </head>
 
 <body>
+    <?php include __DIR__ . '/../menu.php'; ?>
     <h2>Management Penghuni</h2>
 
     <a href="create.php">Tambah Penghuni</a>
@@ -40,46 +40,33 @@ if (!$result) {
     <h2>Daftar Penghuni</h2>
 
     <table border="1" cellpadding="8">
-        <tr>
-            <th>ID</th>
-            <th>Nomor Handpone</th>
-            <th>Nama Lengkap</th>
-            <th>Email</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nomor Handphone</th>
+                <th>Nama Lengkap</th>
+                <th>Email</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
 
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-            <thead>
+        <tbody>
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                 <tr>
                     <td><?= $row['id']; ?></td>
                     <td><?= htmlspecialchars($row['no_hp']); ?></td>
-                    <td><?= $row['nama_lengkap']; ?></td>
-                    <td><?= htmlspecialchars($row['email']); ?></td>
-                    <th>ID</th>
-                    <th>Nomor Handphone</th>
-                    <th>Nama</th>
-                    <th>Keterangan</th>
-                    <th>Aksi</th>
+                    <td><?= htmlspecialchars($row['nama_lengkap']); ?></td>
+                    <td><?= htmlspecialchars($row['email'] ?? ''); ?></td>
+                    <td>
+                        <?php if ($row['id_kamar'] === null) { ?>
+                            <a href="../AssignPenghuni/index.php?id_assign=<?= $row['id_assign']; ?>">ASSIGN</a>
+                        <?php } else { ?>
+                            <a href="../AssignPenghuni/index.php?id_assign=<?= $row['id_assign']; ?>">PINDAH</a>
+                        <?php } ?>
+                    </td>
                 </tr>
             <?php } ?>
-            </thead>
-
-            <tbody>
-                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                    <tr>
-                        <td><?= $row['id']; ?></td>
-                        <td><?= htmlspecialchars($row['no_hp']); ?></td>
-                        <td><?= htmlspecialchars($row['nama']); ?></td>
-                        <td><?= htmlspecialchars($row['keterangan'] ?? ''); ?></td>
-                        <td>
-                            <?php if ($row['id_kamar'] === null) { ?>
-                                <a href="../AssignPenghuni/index.php?id_assign=<?= $row['id_assign']; ?>">ASSIGN</a>
-                            <?php } else { ?>
-                                <a href="../AssignPenghuni/index.php?id_assign=<?= $row['id_assign']; ?>">PINDAH</a>
-                            <?php } ?>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
+        </tbody>
     </table>
 </body>
 

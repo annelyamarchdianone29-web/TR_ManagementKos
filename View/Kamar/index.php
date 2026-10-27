@@ -1,4 +1,3 @@
-<?php include __DIR__ . '/../menu.php'; ?>
 <?php
 require_once __DIR__ . '/../../Conection/koneksi.php';
 
@@ -23,6 +22,7 @@ if (!$result) {
 
 <body class="bg-light">
 
+    <?php include __DIR__ . '/../menu.php'; ?>
     <div class="container mt-4 mb-5">
 
         <div class="card shadow-sm border-0">
@@ -107,17 +107,19 @@ if (!$result) {
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    function konfirmasiHapus(e, url, nomor) {
-        e.preventDefault();
-        Swal.fire({
-            title: 'Nonaktifkan kamar?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#dc3545',
-            confirmButtonText: 'Ya, nonaktifkan',
-            cancelButtonText: 'Batal'
-        }).then(r => { if (r.isConfirmed) location.href = url; });
-    }
+        function konfirmasiHapus(e, url, nomor) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Nonaktifkan kamar?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                confirmButtonText: 'Ya, nonaktifkan',
+                cancelButtonText: 'Batal'
+            }).then(r => {
+                if (r.isConfirmed) location.href = url;
+            });
+        }
     </script>
 </body>
 

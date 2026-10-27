@@ -6,7 +6,7 @@ $pesan = '';
 if (isset($_POST['simpan'])) {
     $no_hp = trim($_POST['no_hp']);
     $nama = trim($_POST['nama']);
-    $keterangan = trim($_POST['keterangan']);
+    $keterangan = trim($_POST['email']);
 
     $sql_cek = "SELECT id FROM m_penghuni WHERE no_hp = ?";
     $stmt_cek = mysqli_prepare($conn, $sql_cek);
@@ -23,7 +23,7 @@ if (isset($_POST['simpan'])) {
 
         try {
             $sql_penghuni = "INSERT INTO m_penghuni
-                             (no_hp, nama, keterangan)
+                             (no_hp, nama, email)
                              VALUES (?, ?, ?)";
 
             $stmt_penghuni = mysqli_prepare($conn, $sql_penghuni);
@@ -33,7 +33,7 @@ if (isset($_POST['simpan'])) {
                 "sss",
                 $no_hp,
                 $nama,
-                $keterangan
+                $email
             );
 
             mysqli_stmt_execute($stmt_penghuni);
@@ -103,7 +103,8 @@ if (isset($_POST['simpan'])) {
 
         <label>Keterangan</label><br>
         <textarea
-            name="keterangan"
+            type="text"
+            name="email"
             required><?= htmlspecialchars($_POST['keterangan'] ?? ''); ?></textarea>
         <br><br>
 

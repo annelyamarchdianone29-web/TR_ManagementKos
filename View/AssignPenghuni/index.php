@@ -1,4 +1,3 @@
-<?php include __DIR__ . '/../menu.php'; ?>
 <?php
 require_once __DIR__ . '/../../Conection/koneksi.php';
 
@@ -40,6 +39,7 @@ $kamar = mysqli_query($conn, "SELECT id, nomor_kamar, harga
 </head>
 
 <body>
+    <?php include __DIR__ . '/../menu.php'; ?>
     <h2><?= $is_pindah ? 'Pindah Kamar' : 'Assign Kamar'; ?></h2>
 
     <p>Penghuni: <strong><?= htmlspecialchars($info['nama']); ?></strong></p>
